@@ -1,44 +1,39 @@
-import { UnlockIcon } from "@chakra-ui/icons"
-import { 
-  Flex, 
-  Heading, 
-  Text, 
-  Button, 
-  Spacer, 
-  HStack, 
-  useToast, 
-  AvatarBadge,
-  Avatar
-} from "@chakra-ui/react"
+import { Spacer, HStack, Flex, Text,Link as ChakraLink } from '@chakra-ui/react'
+import { Heading } from '@chakra-ui/react'
+import { Link} from 'react-router-dom'
 
 export default function Navbar() {
-  const toast = useToast()
+    return (
+        <Flex as="nav" p="10px" mb="10px" alignItems="center" position={"sticky"} top={0} bg={"white"}
+            opacity="1" zIndex={1} style={{ filter: "opacity=50" }}
+        >
+            <table>
+                <tbody>
+                    <tr>
+                        <td style={{ paddingRight: "20px" }}>
+                            <img height="70px" width="70px" src='/assets/icon.jpg' alt='icon' />
+                        </td>
+                        <td>
+                            <Link to='/'>
+                                <span>
+                                    <Heading style={{ fontSize: "2rem" }}>Recommendations by :</Heading>
+                                    <Text fontSize={"1.8rem"}>Sitting on the Shoulders of Giants</Text>
+                                </span>
+                            </Link>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-  return (
-    <Flex as="nav" p="10px" mb="60px" alignItems="center">
-      <Heading as="h1" fontSize="1.5em">Dojo Tasks</Heading>
-      <Spacer />
 
-      <HStack spacing="20px"> 
-        <Avatar name="mario" src="/img/mario.png">
-          <AvatarBadge width="1.3em" bg="teal.500">
-            <Text fontSize="xs" color="white">3</Text>
-          </AvatarBadge>
-        </Avatar>
-        <Text>mario@netninja.dev</Text>
-        <Button 
-          colorScheme="purple"
-          onClick={() => toast({
-            title: 'Logged out.',
-            description: "Successfully logged out",
-            duration: 10000,
-            isClosable: true,
-            position: 'top',
-            status: 'success',
-            icon: <UnlockIcon />,
-          })}
-        >Logout</Button>
-      </HStack>
-    </Flex>
-  )
+            <Spacer />
+            <HStack spacing="30px">
+                <ChakraLink href='http://10.0.6.22:8001' isExternal style={{ fontSize: "1.8rem",textDecoration: 'none' }}>Reco</ChakraLink>
+                <Link to='/daily' style={{ fontSize: "1.8rem" }}>Daily</Link>
+                <Link to='/stocks' style={{ fontSize: "1.8rem" }}>Stocks</Link>
+                <Link to='/mfs' style={{ fontSize: "1.8rem" }}> Mutual Funds</Link>
+                <Link to='/supinv' style={{ fontSize: "1.8rem" }}>Super Investors</Link>
+            </HStack>
+        </Flex >
+    )
 }

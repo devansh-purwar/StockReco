@@ -1,34 +1,39 @@
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider
-} from 'react-router-dom'
-
-// layouts and pages
-import RootLayout from './layouts/RootLayout'
-import Dashboard, { tasksLoader } from './pages/Dashboard'
-import Create, { createAction } from './pages/Create'
-import Profile from './pages/Profile'
-import GrowwTable from './pages/GrowwTable'
-import TabSwitching from './pages/TabSwitching'
-
-// router and routes
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
-      <Route index element={<Dashboard />} loader={tasksLoader} />
-      <Route path="create" element={<Create />} action={createAction} />
-      <Route path="profile" element={<Profile />} />
-      <Route path="table" element={<GrowwTable />} ></Route>
-      <Route path="tab" element={<TabSwitching />} ></Route>
-    </Route>
-  )
-)
-
+import Home from './pages/Home/Home'
+import Stocks from './pages/Stock/Stocks'
+import Mutual from './pages/MutualFund/Mutual'
+import Sharks from './pages/BigShark/Sharks'
+import Daily from './pages/Daily/Daily'
+import Navbar from './components/Navbar'
+import Stock from './pages/Stock/Stock'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import './App.css'
 function App() {
   return (
-    <RouterProvider router={router} />
+    <div style={{ padding: "20px" }}>
+      <BrowserRouter>
+        <Navbar />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/stocks">
+            <Stocks />
+          </Route>
+          <Route path="/stock/:id">
+            <Stock />
+          </Route>
+          <Route path="/mfs">
+            <Mutual />
+          </Route>
+          <Route path="/supinv">
+            <Sharks />
+          </Route>
+          <Route path="/daily">
+            <Daily />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </div>
   )
 }
 
